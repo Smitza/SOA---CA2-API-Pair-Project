@@ -6,6 +6,10 @@
 5. Testing with Postman
 6. If there's time some kind of extra feature (voice lines?)
 
+# Idea planner
+Characters have a base of id, name, health etc...
+Weapons can modify a character's stats, such as abilities, health or speed. (E.g. Demoman can wear shield, and gain more speed and charge ability.)
+
 # Ref
 
 1. Team fortess WebAPI:- https://wiki.teamfortress.com/wiki/WebAPI
