@@ -9,6 +9,10 @@
         public int health { get; set; }
         public int speed { get; set; }
         public string role {  get; set; }
+
+        public weapons slot1 { get; set; }
+        public weapons slot2 { get; set; }
+        public weapons slot3 { get; set; }
         
     }
 }
