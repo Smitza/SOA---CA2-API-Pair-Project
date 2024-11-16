@@ -19,3 +19,4 @@ Weapons can modify a character's stats, such as abilities, health or speed. (E.g
 # Ref
 
 1. Team fortess WebAPI:- https://wiki.teamfortress.com/wiki/WebAPI
+2. Team Fortress 2 wiki (For item and character descriptions) - https://wiki.teamfortress.com/wiki/Main_Page
