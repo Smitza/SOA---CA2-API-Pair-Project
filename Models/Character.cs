@@ -10,9 +10,16 @@
         public double speed { get; set; }
         public string? role { get; set; }
 
-        public Weapons slot1 { get; set; }
-        public Weapons slot2 { get; set; }
-        public Weapons slot3 { get; set; }
+        public long slot1Id { get; set; }
+        public long slot2Id { get; set; }
+        public long slot3Id { get; set; }
+
+
+        public Weapons? slot1 { get; set; }
+        public Weapons? slot2 { get; set; }
+        public Weapons? slot3 { get; set; }
+
+
 
     }
 }

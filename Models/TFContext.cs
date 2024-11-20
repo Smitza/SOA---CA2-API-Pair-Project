@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SOACA2.Models
 {
@@ -21,7 +22,11 @@ namespace SOACA2.Models
                     abilities = "Double Jump",
                     health = 125,
                     speed = 17,
-                    role = "Offensive"
+                    role = "Offensive",
+
+                    slot1Id = 3, //Scattergun
+                    slot2Id = 2, //Pistol
+                    slot3Id = 4 // Bat
                 },
                 new Character()
                 {
@@ -31,7 +36,11 @@ namespace SOACA2.Models
                     abilities = "Rocket Jump",
                     health = 200,
                     speed = 10.2,
-                    role = "Offensive"
+                    role = "Offensive",
+
+                    slot1Id = 5, // Rocket launcher
+                    slot2Id = 1, // Shotgun
+                    slot3Id = 6 // Shovel
                 },
                 new Character()
                 {
@@ -41,7 +50,11 @@ namespace SOACA2.Models
                     abilities = " Afterburn immunity",
                     health = 175,
                     speed = 12.8,
-                    role = "Offensive"
+                    role = "Offensive",
+
+                    slot1Id = 7, // Flamethrower
+                    slot2Id = 1, // Shotgun
+                    slot3Id = 8 // Axe
                 },
                 new Character()
                 {
@@ -51,7 +64,11 @@ namespace SOACA2.Models
                     abilities = "Stickybomb jump",
                     health = 175,
                     speed = 17,
-                    role = "Defensive"
+                    role = "Defensive",
+
+                    slot1Id = 9, // Grenade Launcher
+                    slot2Id = 10, // Stickybomb Launcher
+                    slot3Id = 11 // Bottle
                 },
                 new Character()
                 {
@@ -61,7 +78,11 @@ namespace SOACA2.Models
                     abilities = "Knockback resistance",
                     health = 300,
                     speed = 9.8,
-                    role = "Defensive"
+                    role = "Defensive",
+
+                    slot1Id = 12, // Minigun
+                    slot2Id = 1, //Shotgun
+                    slot3Id = 13 //Gloves
                 },
                 new Character()
                 {
@@ -71,7 +92,11 @@ namespace SOACA2.Models
                     abilities = "Sentry building",
                     health = 125,
                     speed = 12.8,
-                    role = "Defensive"
+                    role = "Defensive",
+
+                    slot1Id = 1, //Shotgun
+                    slot2Id = 2, //Pistol
+                    slot3Id = 14 // Wrench
                 },
                 new Character()
                 {
@@ -81,7 +106,11 @@ namespace SOACA2.Models
                     abilities = "Health regeneration",
                     health = 150,
                     speed = 13.6,
-                    role = "Support"
+                    role = "Support",
+
+                    slot1Id = 15, // Syringe Gun
+                    slot2Id = 16,// Medigun
+                    slot3Id = 17 // Bonesaw
                 },
                 new Character()
                 {
@@ -90,7 +119,11 @@ namespace SOACA2.Models
                     description = "Half rugged outdoorsman, half alien observer, this taciturn strip of beef jerky has spent the better part of his life alone in the bush, slow baking under the Australian sun. ",
                     health = 125,
                     speed = 12.8,
-                    role = "Support"
+                    role = "Support",
+
+                    slot1Id = 18, // Sniper
+                    slot2Id = 19, // SMG
+                    slot3Id = 20 // Kukri
                 },
                 new Character()
                 {
@@ -100,52 +133,67 @@ namespace SOACA2.Models
                     abilities = "Invisibility, Disguise",
                     health = 125,
                     speed = 13.6,
-                    role = "Support"
+                    role = "Support",
+
+                    slot1Id = 21,
+                    slot2Id = null,
+                    slot3Id = 22
                 });
 
             //Seeding weapon data
             modelBuilder.Entity<Weapons>().HasData(
                 // Muti-class weapons
-                new Weapons() {name = "Shotgun", type = "Shotgun", dmg = 90, description = "The Shotgun is the default secondary weapon for the Soldier, Pyro, and Heavy, and the default primary weapon for the Engineer. It is a pump-action, sawed-off shotgun. " },
-                new Weapons() {name = "Pistol", type = "Pistol", dmg = 15, description = "The Pistol boasts only a small amount of damage per hit, however, its high rate of fire makes its overall damage output relatively substantial if multiple consecutive shots are landed." },
-                
+                new Weapons() {id = 1, name = "Shotgun", type = "Shotgun", dmg = 90, description = "The Shotgun is the default secondary weapon for the Soldier, Pyro, and Heavy, and the default primary weapon for the Engineer. It is a pump-action, sawed-off shotgun. " },
+                new Weapons() {id = 2, name = "Pistol", type = "Pistol", dmg = 15, description = "The Pistol boasts only a small amount of damage per hit, however, its high rate of fire makes its overall damage output relatively substantial if multiple consecutive shots are landed." },
+
+                // Muti-class weapons - non main
+                //new Weapons() { name = "Lugermorph", type = "Lugermorph", dmg = 22, description = "The Lugermorph (/ˈlu.ɡɚ.mɔɹf/ or /ˈlu.ɡə.mɔːf/ loo-gerr-morf) is a promotional secondary weapon for the Scout and Engineer. It is based on the pistol used by Max from the Sam & Max franchise." },
+                //new Weapons() { name = "C.A.P.P.E.R", type = "C.A.P.P.E.R", dmg = 22, description = "The C.A.P.P.E.R is a community-created secondary weapon for the Scout and Engineer. It is a retro-futuristic ray gun with team-colored fins and a well-worn, metallic, team-colored body, implying extensive use. It has a small antenna protruding from the front of the gun and a long silver wire down the lower half of the weapon, which leads to a small rocket exhaust. The C.A.P.P.E.R uses AA batteries as ammunition instead of the standard Pistol magazine." },
+
                 // Scout weapons
-                new Weapons() {name = "Scattergun", type = "Scattergun", dmg = 105, description = "The Scattergun is the default primary weapon for the Scout. It is a short, double-barreled, lever-action shotgun with a wooden handle and foregrip." },
-                new Weapons() {name = "Bat", type = "Melee", dmg = 35, description = "The Bat is the default melee weapon for the Scout. It is an aluminium baseball bat with rubber grip tape, a faded green-ish blue label, and a large dent on one side." },
+                new Weapons() {id=3, name = "Scattergun", type = "Scattergun", dmg = 105, description = "The Scattergun is the default primary weapon for the Scout. It is a short, double-barreled, lever-action shotgun with a wooden handle and foregrip." },
+                new Weapons() {id=4 ,name = "Bat", type = "Melee", dmg = 35, description = "The Bat is the default melee weapon for the Scout. It is an aluminium baseball bat with rubber grip tape, a faded green-ish blue label, and a large dent on one side." },
+                
+                // Scout weapons primary non-main
+                //new Weapons() { name = "Force-A-Nature", type = "Force-A-Nature", dmg = 113, description = "The Force-A-Nature, also known as the FaN, is an unlockable primary weapon for the Scout. It is a large double-barreled hunting shotgun with sawn-off barrels and a wooden stock and foregrip." },
+                //new Weapons() { name = "Shortstop", type = "Shortstop", dmg = 72, description = "The Shortstop is a community-created primary weapon for the Scout. It is a four-barreled derringer-style peppergun fitted with pearl grips." },
+                //new Weapons() { name = "Soda Popper", type = "Soda Popper", dmg = 105, description = "The Soda Popper is a community-created primary weapon for the Scout. It is a broken break-action double-barrelled shotgun featuring three black bands around the stock and front, one black band around the slitted barrel, and a band near the trigger guard. A can of Crit-a-Cola is fitted underneath fixed into place with bands as a makeshift handguard." },
+                //new Weapons() { name = "Baby Face's Blaster", type = "Baby Face's Blaster", dmg = 105, description = "The Baby Face's Blaster is a community-created primary weapon for the Scout. It is a short, slightly modified lever-action shotgun with a wooden handle, small drum magazine and a single barrel." },
+                //new Weapons() { name = "Back Scatter", type = "Back Scatter", dmg = 105, description = "The Back Scatter is a community-created primary weapon for the Scout. It is a short, slightly-modified lever-action shotgun with wooden grips, a single barrel, and two small shell drums on the sides." },
 
                 // Soldier weapons
-                new Weapons() { name = "Rocket Launcher", type = "Rocket Launcher", dmg = 90, description = "The Rocket Launcher is the default primary weapon for the Soldier. It is a stylized rocket-launching device with wooden grips, a large front sight, and a wide exhaust port." },
-                new Weapons() {name = "Shovel", type = "Melee", dmg = 65, description = "The Shovel is the default melee weapon for the Soldier. It is a stylized hand-held entrenching tool with a splintered handle. " },
+                new Weapons() {id=5, name = "Rocket Launcher", type = "Rocket Launcher", dmg = 90, description = "The Rocket Launcher is the default primary weapon for the Soldier. It is a stylized rocket-launching device with wooden grips, a large front sight, and a wide exhaust port." },
+                new Weapons() {id=6, name = "Shovel", type = "Melee", dmg = 65, description = "The Shovel is the default melee weapon for the Soldier. It is a stylized hand-held entrenching tool with a splintered handle. " },
 
                 // Pyro weapons
-                new Weapons() {name = "Flame Thrower", type = "Flame Thrower", dmg = 150, description = "The Flame Thrower is the default primary weapon for the Pyro. It is a long metal pole, connected by a hose to a propane tank. The tank is attached to the pole via fastening bands. A continually lit pilot light can be seen at the nozzle. The trigger is made out of a team-colored gas pump handle." },
-                new Weapons() {name = "Fire Axe", type = "Melee", dmg = 65, description = "The Fire Axe is the default melee weapon for the Pyro. It is a firefighter's axe with a red axe-head, unpainted blade, and a plain wooden handle. " },
+                new Weapons() {id = 7 ,name = "Flame Thrower", type = "Flame Thrower", dmg = 150, description = "The Flame Thrower is the default primary weapon for the Pyro. It is a long metal pole, connected by a hose to a propane tank. The tank is attached to the pole via fastening bands. A continually lit pilot light can be seen at the nozzle. The trigger is made out of a team-colored gas pump handle." },
+                new Weapons() {id = 8, name = "Fire Axe", type = "Melee", dmg = 65, description = "The Fire Axe is the default melee weapon for the Pyro. It is a firefighter's axe with a red axe-head, unpainted blade, and a plain wooden handle. " },
 
                 // Demoman weapons
-                new Weapons() {name = "Grenade Launcher", type = "Grenade Launcher", dmg = 100, description = "The Grenade Launcher is the default primary weapon for the Demoman. It is a stylized revolving, break-action grenade launcher with adjustable sights and a wooden stock and foregrip. " },
-                new Weapons() {name = "Stickybomb Launcher", type = "Stickybomb Launcher", dmg = 120, description = "The Stickybomb Launcher is the default secondary weapon for the Demoman. It is a modified grenade launcher with a large olive drum magazine, an under-barrel foregrip, and a wide barrel. A charging handle used to reload the weapon sits on the back left side, above the trigger. " },
-                new Weapons() {name = "Bottle", type = "Melee", dmg = 65, description = "The Bottle is the default melee weapon for the Demoman. It is a brown, opaque glass bottle of scrumpy marked with 'XXX' on the label and the year '1808'. " },
+                new Weapons() {id = 9, name = "Grenade Launcher", type = "Grenade Launcher", dmg = 100, description = "The Grenade Launcher is the default primary weapon for the Demoman. It is a stylized revolving, break-action grenade launcher with adjustable sights and a wooden stock and foregrip. " },
+                new Weapons() {id = 10, name = "Stickybomb Launcher", type = "Stickybomb Launcher", dmg = 120, description = "The Stickybomb Launcher is the default secondary weapon for the Demoman. It is a modified grenade launcher with a large olive drum magazine, an under-barrel foregrip, and a wide barrel. A charging handle used to reload the weapon sits on the back left side, above the trigger. " },
+                new Weapons() {id = 11, name = "Bottle", type = "Melee", dmg = 65, description = "The Bottle is the default melee weapon for the Demoman. It is a brown, opaque glass bottle of scrumpy marked with 'XXX' on the label and the year '1808'. " },
 
                  // Heavy weapons
-                new Weapons() { name = "Minigun", type = "Minigun", dmg = 9, description = "The Minigun, known affectionately as 'Sasha' is the default primary weapon for the Heavy. It is an enormous Gatling-style machine gun with a large rotating barrel, complete with a large white underslung ammunition case and two handles. " },
-                new Weapons() { name = "Fists", type = "Melee", dmg = 65, description = "The Fists are the default melee weapon for the Heavy. They are the Heavy's large, meaty hands wearing fingerless gloves and curled into deadly weapons. " },
+                new Weapons() {id=12, name = "Minigun", type = "Minigun", dmg = 9, description = "The Minigun, known affectionately as 'Sasha' is the default primary weapon for the Heavy. It is an enormous Gatling-style machine gun with a large rotating barrel, complete with a large white underslung ammunition case and two handles. " },
+                new Weapons() { id=13,name = "Fists", type = "Melee", dmg = 65, description = "The Fists are the default melee weapon for the Heavy. They are the Heavy's large, meaty hands wearing fingerless gloves and curled into deadly weapons. " },
 
                 // Engineer weapons
-                new Weapons() { name = "Wrench", type = "Melee", dmg = 65, description = "The Wrench, also known as the Uhlman Build-Matic Wrench, is the default melee weapon for the Engineer. It is a monkey wrench with an antique design. " },
+                new Weapons() {id=14, name = "Wrench", type = "Melee", dmg = 65, description = "The Wrench, also known as the Uhlman Build-Matic Wrench, is the default melee weapon for the Engineer. It is a monkey wrench with an antique design. " },
 
                 // Medic weapons
-                 new Weapons() { name = "Syringe Gun", type = "Syringe Gun", dmg = 10, description = "The Syringe Gun is the default primary weapon for the Medic. It is a custom-built stylized gun that uses air pressure to fire syringes from a transparent cylindrical case.  " },
-                 new Weapons() { name = "Medi Gun", type = "Medi Gun", dmg = 0, description = "The Medi Gun is the default secondary weapon for the Medic. It is a modified team-colored fire hose nozzle wrapped in black tape and outfitted with a bottom handle, which is connected to the Medic's backpack by a hose." },
-                 new Weapons() { name = "Bonesaw", type = "Melee", dmg = 65, description = "The Bonesaw is the default melee weapon for the Medic. It is a worn, large-toothed medical saw with a thick grey handle, similar to those that were once used during operations and amputations. " },
+                 new Weapons() {id=15, name = "Syringe Gun", type = "Syringe Gun", dmg = 10, description = "The Syringe Gun is the default primary weapon for the Medic. It is a custom-built stylized gun that uses air pressure to fire syringes from a transparent cylindrical case.  " },
+                 new Weapons() {id=16, name = "Medi Gun", type = "Medi Gun", dmg = 0, description = "The Medi Gun is the default secondary weapon for the Medic. It is a modified team-colored fire hose nozzle wrapped in black tape and outfitted with a bottom handle, which is connected to the Medic's backpack by a hose." },
+                 new Weapons() {id=17, name = "Bonesaw", type = "Melee", dmg = 65, description = "The Bonesaw is the default melee weapon for the Medic. It is a worn, large-toothed medical saw with a thick grey handle, similar to those that were once used during operations and amputations. " },
 
                  // Sniper weapons
-                 new Weapons() { name = "Sniper Rifle", type = "Sniper Rifle", dmg = 150, description = "The Sniper Rifle is the default primary weapon for the Sniper. It is a single-shot, bolt-action rifle with a wooden stock and a massive telescopic scope, with a laser sight attached underneath. " },
-                 new Weapons() { name = "SMG", type = "SMG", dmg = 8, description = "The Medi Gun is the default secondary weapon for the Medic. It is a modified team-colored fire hose nozzle wrapped in black tape and outfitted with a bottom handle, which is connected to the Medic's backpack by a hose." },
-                 new Weapons() { name = "Kukri", type = "Melee", dmg = 65, description = "The Kukri is the default melee weapon for the Sniper. It is a large kukri with a brown handle and a bit of its blade chipped off. " },
+                 new Weapons() {id=18, name = "Sniper Rifle", type = "Sniper Rifle", dmg = 150, description = "The Sniper Rifle is the default primary weapon for the Sniper. It is a single-shot, bolt-action rifle with a wooden stock and a massive telescopic scope, with a laser sight attached underneath. " },
+                 new Weapons() {id=19, name = "SMG", type = "SMG", dmg = 8, description = "The Medi Gun is the default secondary weapon for the Medic. It is a modified team-colored fire hose nozzle wrapped in black tape and outfitted with a bottom handle, which is connected to the Medic's backpack by a hose." },
+                 new Weapons() {id=20, name = "Kukri", type = "Melee", dmg = 65, description = "The Kukri is the default melee weapon for the Sniper. It is a large kukri with a brown handle and a bit of its blade chipped off. " },
 
                  // Spy weapons
-                 new Weapons() { name = "Revolver", type = "Revolver", dmg = 40, description = "The Revolver is the default secondary weapon for the Spy. It is a stylized double-action, six-shot revolver with ivory grips and a swing-out cylinder. " },
-                 new Weapons() { name = "Knife", type = "Melee", dmg = 10000, description = "The Knife, also known as the Butterfly Knife or Balisong, is the default melee weapon for the Spy. It is a foldable stylized butterfly knife with a handle clip and clip-point blade. " }
+                 new Weapons() {id=21, name = "Revolver", type = "Revolver", dmg = 40, description = "The Revolver is the default secondary weapon for the Spy. It is a stylized double-action, six-shot revolver with ivory grips and a swing-out cylinder. " },
+                 new Weapons() {id=22, name = "Knife", type = "Melee", dmg = 10000, description = "The Knife, also known as the Butterfly Knife or Balisong, is the default melee weapon for the Spy. It is a foldable stylized butterfly knife with a handle clip and clip-point blade. " }
                  );
 
             base.OnModelCreating(modelBuilder);

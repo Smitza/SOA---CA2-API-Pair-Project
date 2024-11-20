@@ -4,9 +4,11 @@
     {
         public long id { get; set; }
         public string? name { get; set; }
-        public List<Character> classes;
         public string? type { get; set; }
         public double dmg { get; set; }
         public string? description { get; set; }
+
+        public List<Character> Classes { get; set; } = new List<Character>();
+
     }
 }
