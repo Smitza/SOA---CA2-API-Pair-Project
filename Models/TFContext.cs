@@ -135,9 +135,9 @@ namespace SOACA2.Models
                     speed = 13.6,
                     role = "Support",
 
-                    slot1Id = 21,
-                    slot2Id = null,
-                    slot3Id = 22
+                    slot1Id = 21, // Revolver
+                    slot2Id = 0, 
+                    slot3Id = 22 // Knife
                 });
 
             //Seeding weapon data
