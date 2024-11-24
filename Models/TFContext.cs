@@ -3,15 +3,34 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace SOACA2.Models
 {
+
     public class TFContext: DbContext
     {
         public TFContext(DbContextOptions<TFContext> options) : base(options) { }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Weapons> WeaponSet { get; set; }
+        public DbSet<CharacterWeapon> CharacterWeapons { get; set; }
         public string DbPath { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Set up relationships between classes and weapons
+            modelBuilder.Entity<CharacterWeapon>()
+        .HasKey(cw => new { cw.CharacterId, cw.WeaponId });
+
+            modelBuilder.Entity<CharacterWeapon>()
+                .HasOne(cw => cw.Character)
+                .WithMany(c => c.CharacterWeapons)
+                .HasForeignKey(cw => cw.CharacterId);
+
+            modelBuilder.Entity<CharacterWeapon>()
+                .HasOne(cw => cw.Weapon)
+                .WithMany(w => w.CharacterWeapons)
+                .HasForeignKey(cw => cw.WeaponId);
+
+
+
+
             //Seeding character data
             modelBuilder.Entity<Character>().HasData(
                 new Character()
@@ -22,11 +41,8 @@ namespace SOACA2.Models
                     abilities = "Double Jump",
                     health = 125,
                     speed = 17,
-                    role = "Offensive",
+                    role = "Offensive"
 
-                    slot1Id = 3, //Scattergun
-                    slot2Id = 2, //Pistol
-                    slot3Id = 4 // Bat
                 },
                 new Character()
                 {
@@ -36,11 +52,7 @@ namespace SOACA2.Models
                     abilities = "Rocket Jump",
                     health = 200,
                     speed = 10.2,
-                    role = "Offensive",
-
-                    slot1Id = 5, // Rocket launcher
-                    slot2Id = 1, // Shotgun
-                    slot3Id = 6 // Shovel
+                    role = "Offensive"
                 },
                 new Character()
                 {
@@ -50,11 +62,7 @@ namespace SOACA2.Models
                     abilities = " Afterburn immunity",
                     health = 175,
                     speed = 12.8,
-                    role = "Offensive",
-
-                    slot1Id = 7, // Flamethrower
-                    slot2Id = 1, // Shotgun
-                    slot3Id = 8 // Axe
+                    role = "Offensive"
                 },
                 new Character()
                 {
@@ -64,11 +72,7 @@ namespace SOACA2.Models
                     abilities = "Stickybomb jump",
                     health = 175,
                     speed = 17,
-                    role = "Defensive",
-
-                    slot1Id = 9, // Grenade Launcher
-                    slot2Id = 10, // Stickybomb Launcher
-                    slot3Id = 11 // Bottle
+                    role = "Defensive"
                 },
                 new Character()
                 {
@@ -78,11 +82,7 @@ namespace SOACA2.Models
                     abilities = "Knockback resistance",
                     health = 300,
                     speed = 9.8,
-                    role = "Defensive",
-
-                    slot1Id = 12, // Minigun
-                    slot2Id = 1, //Shotgun
-                    slot3Id = 13 //Gloves
+                    role = "Defensive"
                 },
                 new Character()
                 {
@@ -92,11 +92,7 @@ namespace SOACA2.Models
                     abilities = "Sentry building",
                     health = 125,
                     speed = 12.8,
-                    role = "Defensive",
-
-                    slot1Id = 1, //Shotgun
-                    slot2Id = 2, //Pistol
-                    slot3Id = 14 // Wrench
+                    role = "Defensive"
                 },
                 new Character()
                 {
@@ -106,11 +102,7 @@ namespace SOACA2.Models
                     abilities = "Health regeneration",
                     health = 150,
                     speed = 13.6,
-                    role = "Support",
-
-                    slot1Id = 15, // Syringe Gun
-                    slot2Id = 16,// Medigun
-                    slot3Id = 17 // Bonesaw
+                    role = "Support"
                 },
                 new Character()
                 {
@@ -119,11 +111,7 @@ namespace SOACA2.Models
                     description = "Half rugged outdoorsman, half alien observer, this taciturn strip of beef jerky has spent the better part of his life alone in the bush, slow baking under the Australian sun. ",
                     health = 125,
                     speed = 12.8,
-                    role = "Support",
-
-                    slot1Id = 18, // Sniper
-                    slot2Id = 19, // SMG
-                    slot3Id = 20 // Kukri
+                    role = "Support"
                 },
                 new Character()
                 {
@@ -133,12 +121,9 @@ namespace SOACA2.Models
                     abilities = "Invisibility, Disguise",
                     health = 125,
                     speed = 13.6,
-                    role = "Support",
-
-                    slot1Id = 21, // Revolver
-                    slot2Id = null, 
-                    slot3Id = 22 // Knife
+                    role = "Support"
                 });
+
 
             //Seeding weapon data
             modelBuilder.Entity<Weapons>().HasData(
@@ -196,7 +181,59 @@ namespace SOACA2.Models
                  new Weapons() {id=22, name = "Knife", type = "Melee", dmg = 10000, description = "The Knife, also known as the Butterfly Knife or Balisong, is the default melee weapon for the Spy. It is a foldable stylized butterfly knife with a handle clip and clip-point blade. " }
                  );
 
+
+
+            //Many-to-many relationships
+            modelBuilder.Entity<CharacterWeapon>().HasData(
+                // Scout
+                new CharacterWeapon() { Id = 1, CharacterId = 1, WeaponId = 3, Slot = 1 },
+                new CharacterWeapon() { Id = 2, CharacterId = 1, WeaponId = 2, Slot = 2 },
+                new CharacterWeapon() { Id = 3, CharacterId = 1, WeaponId = 4, Slot = 3 },
+                
+                //Soldier
+                new CharacterWeapon() { Id = 4, CharacterId = 2, WeaponId = 5, Slot = 1 },
+                new CharacterWeapon() { Id = 5, CharacterId = 2, WeaponId = 1, Slot = 2 },
+                new CharacterWeapon() { Id = 6, CharacterId = 2, WeaponId = 6, Slot = 3 },
+
+                //Pyro
+                new CharacterWeapon() { Id = 7, CharacterId = 3, WeaponId = 7, Slot = 1 },
+                new CharacterWeapon() { Id = 8, CharacterId = 3, WeaponId = 1, Slot = 2 },
+                new CharacterWeapon() { Id = 9, CharacterId = 3, WeaponId = 8, Slot = 3 },
+
+                //Demo
+                new CharacterWeapon() { Id = 10, CharacterId = 4, WeaponId = 9, Slot = 1 },
+                new CharacterWeapon() { Id = 11, CharacterId = 4, WeaponId = 10, Slot = 2 },
+                new CharacterWeapon() { Id = 12, CharacterId = 4, WeaponId = 11, Slot = 3 },
+
+                //Heavy
+                new CharacterWeapon() { Id = 13, CharacterId = 5, WeaponId = 12, Slot = 1 },
+                new CharacterWeapon() { Id = 14, CharacterId = 5, WeaponId = 1, Slot = 2 },
+                new CharacterWeapon() { Id = 15, CharacterId = 5, WeaponId = 13, Slot = 3 },
+
+                //Engineer
+                new CharacterWeapon() { Id = 16, CharacterId = 6, WeaponId = 1, Slot = 1 },
+                new CharacterWeapon() { Id = 17, CharacterId = 6, WeaponId = 2, Slot = 2 },
+                new CharacterWeapon() { Id = 18, CharacterId = 6, WeaponId = 14, Slot = 3 },
+
+                //Medic
+                new CharacterWeapon() { Id = 19, CharacterId = 7, WeaponId = 15, Slot = 1 },
+                new CharacterWeapon() { Id = 20, CharacterId = 7, WeaponId = 16, Slot = 2 },
+                new CharacterWeapon() { Id = 21, CharacterId = 7, WeaponId = 17, Slot = 3 },
+
+                //Sniper
+                new CharacterWeapon() { Id = 22, CharacterId = 8, WeaponId = 18, Slot = 1 },
+                new CharacterWeapon() { Id = 23, CharacterId = 8, WeaponId = 19, Slot = 2 },
+                new CharacterWeapon() { Id = 24, CharacterId = 8, WeaponId = 20, Slot = 3 },
+
+                //Spy
+                new CharacterWeapon() { Id = 25, CharacterId = 9, WeaponId = 21, Slot = 2 },
+                new CharacterWeapon() { Id = 26, CharacterId = 9, WeaponId = 22, Slot = 3 }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
+
+        
     }
+    
 }

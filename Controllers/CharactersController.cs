@@ -18,6 +18,7 @@ namespace SOACA2.Controllers
         public CharactersController(TFContext context)
         {
             _context = context;
+            context.Database.EnsureCreated();
         }
 
         // GET: api/Characters
@@ -29,7 +30,7 @@ namespace SOACA2.Controllers
 
         // GET: api/Characters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(long id)
+        public async Task<ActionResult<Character>> GetCharacter(int id)
         {
             var character = await _context.Characters.FindAsync(id);
 
@@ -44,7 +45,7 @@ namespace SOACA2.Controllers
         // PUT: api/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(long id, Character character)
+        public async Task<IActionResult> PutCharacter(int id, Character character)
         {
             if (id != character.id)
             {
@@ -85,7 +86,7 @@ namespace SOACA2.Controllers
 
         // DELETE: api/Characters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(long id)
+        public async Task<IActionResult> DeleteCharacter(int id)
         {
             var character = await _context.Characters.FindAsync(id);
             if (character == null)
@@ -99,7 +100,7 @@ namespace SOACA2.Controllers
             return NoContent();
         }
 
-        private bool CharacterExists(long id)
+        private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.id == id);
         }

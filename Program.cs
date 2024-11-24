@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
-//Use in memory datbase for now, but change later
+//Use in memory database for now, but change later
 builder.Services.AddDbContext<TFContext>(opt => opt.UseInMemoryDatabase("TFList"));
 
 builder.Services.AddControllers();
