@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GraphQL.AspNet.Attributes;
+using GraphQL.AspNet.Controllers;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 
 namespace SOACA2.Models
@@ -9,6 +11,7 @@ namespace SOACA2.Models
         public TFContext(DbContextOptions<TFContext> options) : base(options) { }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -176,5 +179,5 @@ namespace SOACA2.Models
 
         
     }
-    
+
 }

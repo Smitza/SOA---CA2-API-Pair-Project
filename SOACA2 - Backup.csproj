@@ -10,11 +10,7 @@
   <ItemGroup>
     <!-- <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" NoWarn="NU1605" /> -->
     <!-- <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.10" NoWarn="NU1605" /> -->
-    <PackageReference Include="GraphQL" Version="8.2.1" />
-    <PackageReference Include="GraphQL.AspNet" Version="1.4.2" />
-    <PackageReference Include="GraphQL.DataLoader" Version="8.2.1" />
-    <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="8.1.0" />
-    <PackageReference Include="GraphQL.Server.Ui.Playground" Version="8.1.0" />
+    <PackageReference Include="GraphQL.Server" Version="1.7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
