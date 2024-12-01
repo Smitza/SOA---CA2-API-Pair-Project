@@ -1,6 +1,7 @@
 ﻿using GraphQL.AspNet.Attributes;
 using GraphQL.AspNet.Controllers;
 using GraphQL.AspNet.Schemas;
+using Microsoft.EntityFrameworkCore;
 
 namespace SOACA2.Models
 {
@@ -16,13 +17,13 @@ namespace SOACA2.Models
         [QueryRoot("characters")]
         public IQueryable<Character> GetAllCharacters()
         {
-            return _context.Characters; 
+            return _context.Characters.Include(c => c.Weapons); 
         }
 
         [QueryRoot("weapons")]
         public IQueryable<Weapon> GetAllWeapons()
         {
-            return _context.Weapons;
+            return _context.Weapons.Include(c => c.Character);
         }
     }
 
