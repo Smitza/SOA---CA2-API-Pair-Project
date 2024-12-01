@@ -10,6 +10,6 @@
         public double speed { get; set; }
         public string? role { get; set; }
 
-        public ICollection<CharacterWeapon> CharacterWeapons { get; set; } = new List<CharacterWeapon>();
+        public ICollection<Weapon> Weapons  { get; set; }
     }
 }

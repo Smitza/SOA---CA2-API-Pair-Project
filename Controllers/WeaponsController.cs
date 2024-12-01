@@ -18,41 +18,40 @@ namespace SOACA2.Controllers
         public WeaponsController(TFContext context)
         {
             _context = context;
-            context.Database.EnsureCreated();
         }
 
         // GET: api/Weapons
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Weapons>>> GetWeaponSet()
+        public async Task<ActionResult<IEnumerable<Weapon>>> GetWeapons()
         {
-            return await _context.WeaponSet.ToListAsync();
+            return await _context.Weapons.ToListAsync();
         }
 
         // GET: api/Weapons/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Weapons>> GetWeapons(int id)
+        public async Task<ActionResult<Weapon>> GetWeapon(int id)
         {
-            var weapons = await _context.WeaponSet.FindAsync(id);
+            var weapon = await _context.Weapons.FindAsync(id);
 
-            if (weapons == null)
+            if (weapon == null)
             {
                 return NotFound();
             }
 
-            return weapons;
+            return weapon;
         }
 
         // PUT: api/Weapons/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWeapons(int id, Weapons weapons)
+        public async Task<IActionResult> PutWeapon(int id, Weapon weapon)
         {
-            if (id != weapons.id)
+            if (id != weapon.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(weapons).State = EntityState.Modified;
+            _context.Entry(weapon).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +59,7 @@ namespace SOACA2.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!WeaponsExists(id))
+                if (!WeaponExists(id))
                 {
                     return NotFound();
                 }
@@ -76,33 +75,33 @@ namespace SOACA2.Controllers
         // POST: api/Weapons
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Weapons>> PostWeapons(Weapons weapons)
+        public async Task<ActionResult<Weapon>> PostWeapon(Weapon weapon)
         {
-            _context.WeaponSet.Add(weapons);
+            _context.Weapons.Add(weapon);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWeapons", new { id = weapons.id }, weapons);
+            return CreatedAtAction("GetWeapon", new { id = weapon.id }, weapon);
         }
 
         // DELETE: api/Weapons/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteWeapons(int id)
+        public async Task<IActionResult> DeleteWeapon(int id)
         {
-            var weapons = await _context.WeaponSet.FindAsync(id);
-            if (weapons == null)
+            var weapon = await _context.Weapons.FindAsync(id);
+            if (weapon == null)
             {
                 return NotFound();
             }
 
-            _context.WeaponSet.Remove(weapons);
+            _context.Weapons.Remove(weapon);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool WeaponsExists(int id)
+        private bool WeaponExists(int id)
         {
-            return _context.WeaponSet.Any(e => e.id == id);
+            return _context.Weapons.Any(e => e.id == id);
         }
     }
 }

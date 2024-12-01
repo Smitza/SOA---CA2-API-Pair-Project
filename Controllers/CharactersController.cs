@@ -18,14 +18,13 @@ namespace SOACA2.Controllers
         public CharactersController(TFContext context)
         {
             _context = context;
-            context.Database.EnsureCreated();
         }
 
         // GET: api/Characters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
-        {
-            return await _context.Characters.ToListAsync();
+        { // Modify to include weapons
+            return await _context.Characters.Include(c => c.Weapons).ToListAsync();
         }
 
         // GET: api/Characters/5
