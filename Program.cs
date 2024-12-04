@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using SOACA2.Models;
 
+//new
+using Microsoft.Data.SqlClient;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,10 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
     });
+
+// New connection string
+// string connectionString = app.Configuration.GetConnectionString("Server=tcp:team-fortress-2-server.database.windows.net,1433;Initial Catalog=TeamFortress2 Database;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=\"Active Directory Default\";")!;
+
 
 builder.Services.AddDbContext<TFContext>(opt => opt.UseInMemoryDatabase("TFList"));
 
