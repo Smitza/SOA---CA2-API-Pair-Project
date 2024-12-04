@@ -120,17 +120,13 @@ namespace SOACA2.Models
 
             //Seeding weapon data
             modelBuilder.Entity<Weapon>().HasData(
-                // Muti-class weapons
-                //new Weapon() { id = 1, name = "Shotgun", type = "Shotgun", dmg = 90, description = "The Shotgun is the default secondary weapon for the Soldier, Pyro, and Heavy, and the default primary weapon for the Engineer. It is a pump-action, sawed-off shotgun. " },
-                //new Weapon() { id = 2, name = "Pistol", type = "Pistol", dmg = 15, description = "The Pistol boasts only a small amount of damage per hit, however, its high rate of fire makes its overall damage output relatively substantial if multiple consecutive shots are landed." },
+
+                // Data to add if there is enough time.
 
                 // Muti-class weapons - non main
                 //new Weapons() { name = "Lugermorph", type = "Lugermorph", dmg = 22, description = "The Lugermorph (/ˈlu.ɡɚ.mɔɹf/ or /ˈlu.ɡə.mɔːf/ loo-gerr-morf) is a promotional secondary weapon for the Scout and Engineer. It is based on the pistol used by Max from the Sam & Max franchise." },
                 //new Weapons() { name = "C.A.P.P.E.R", type = "C.A.P.P.E.R", dmg = 22, description = "The C.A.P.P.E.R is a community-created secondary weapon for the Scout and Engineer. It is a retro-futuristic ray gun with team-colored fins and a well-worn, metallic, team-colored body, implying extensive use. It has a small antenna protruding from the front of the gun and a long silver wire down the lower half of the weapon, which leads to a small rocket exhaust. The C.A.P.P.E.R uses AA batteries as ammunition instead of the standard Pistol magazine." },
 
-                // Scout weapons
-                new Weapon() { id = 3, name = "Scattergun", type = "Scattergun", dmg = 105, description = "The Scattergun is the default primary weapon for the Scout. It is a short, double-barreled, lever-action shotgun with a wooden handle and foregrip.", CharacterId = 1 },
-                new Weapon() { id = 4, name = "Bat", type = "Melee", dmg = 35, description = "The Bat is the default melee weapon for the Scout. It is an aluminium baseball bat with rubber grip tape, a faded green-ish blue label, and a large dent on one side.", CharacterId = 1 },
 
                 // Scout weapons primary non-main
                 //new Weapons() { name = "Force-A-Nature", type = "Force-A-Nature", dmg = 113, description = "The Force-A-Nature, also known as the FaN, is an unlockable primary weapon for the Scout. It is a large double-barreled hunting shotgun with sawn-off barrels and a wooden stock and foregrip." },
@@ -138,6 +134,17 @@ namespace SOACA2.Models
                 //new Weapons() { name = "Soda Popper", type = "Soda Popper", dmg = 105, description = "The Soda Popper is a community-created primary weapon for the Scout. It is a broken break-action double-barrelled shotgun featuring three black bands around the stock and front, one black band around the slitted barrel, and a band near the trigger guard. A can of Crit-a-Cola is fitted underneath fixed into place with bands as a makeshift handguard." },
                 //new Weapons() { name = "Baby Face's Blaster", type = "Baby Face's Blaster", dmg = 105, description = "The Baby Face's Blaster is a community-created primary weapon for the Scout. It is a short, slightly modified lever-action shotgun with a wooden handle, small drum magazine and a single barrel." },
                 //new Weapons() { name = "Back Scatter", type = "Back Scatter", dmg = 105, description = "The Back Scatter is a community-created primary weapon for the Scout. It is a short, slightly-modified lever-action shotgun with wooden grips, a single barrel, and two small shell drums on the sides." },
+
+
+                // Muti-class weapons
+                new Weapon() { id = 1, name = "Shotgun", type = "Shotgun", dmg = 90, description = "The Shotgun is the default secondary weapon for the Soldier, Pyro, and Heavy, and the default primary weapon for the Engineer. It is a pump-action, sawed-off shotgun. " },
+                new Weapon() { id = 2, name = "Pistol", type = "Pistol", dmg = 15, description = "The Pistol boasts only a small amount of damage per hit, however, its high rate of fire makes its overall damage output relatively substantial if multiple consecutive shots are landed." },
+
+
+                // Scout weapons
+                new Weapon() { id = 3, name = "Scattergun", type = "Scattergun", dmg = 105, description = "The Scattergun is the default primary weapon for the Scout. It is a short, double-barreled, lever-action shotgun with a wooden handle and foregrip.", CharacterId = 1 },
+                new Weapon() { id = 4, name = "Bat", type = "Melee", dmg = 35, description = "The Bat is the default melee weapon for the Scout. It is an aluminium baseball bat with rubber grip tape, a faded green-ish blue label, and a large dent on one side.", CharacterId = 1 },
+
 
                 // Soldier weapons
                 new Weapon() { id = 5, name = "Rocket Launcher", type = "Rocket Launcher", dmg = 90, description = "The Rocket Launcher is the default primary weapon for the Soldier. It is a stylized rocket-launching device with wooden grips, a large front sight, and a wide exhaust port.", CharacterId = 2 },
