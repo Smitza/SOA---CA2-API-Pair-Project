@@ -1,6 +1,7 @@
 ﻿using GraphQL.AspNet.Attributes;
 using GraphQL.AspNet.Controllers;
 using GraphQL.AspNet.Schemas;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace SOACA2.Models
@@ -18,6 +19,12 @@ namespace SOACA2.Models
         public IQueryable<Character> GetAllCharacters()
         {
             return _context.Characters.Include(c => c.Weapons); 
+        }
+
+        [QueryRoot(typeof(Character))]
+        public IQueryable<Character> GetRole(string searchrole)
+        {
+            return _context.Characters.Where(c => c.role.Equals(searchrole, StringComparison.OrdinalIgnoreCase));
         }
 
         [QueryRoot("weapons")]
