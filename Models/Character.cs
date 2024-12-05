@@ -18,5 +18,8 @@ namespace SOACA2.Models
 
         [GraphField("weapons")]
         public ICollection<Weapon> Weapons  { get; set; }
+
+        [GraphField("cosmetics")]
+        public ICollection<Cosmetic> Cosmetics { get; set; }
     }
 }

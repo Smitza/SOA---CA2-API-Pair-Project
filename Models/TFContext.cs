@@ -11,14 +11,22 @@ namespace SOACA2.Models
         public TFContext(DbContextOptions<TFContext> options) : base(options) { }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<Cosmetic> Cosmetics { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            //Set up relationships between classes and weapons
+            //Relationships between classes and weapons
             modelBuilder.Entity<Character>()
                 .HasMany(e => e.Weapons)
+                .WithOne(e => e.Character)
+                .HasForeignKey(e => e.CharacterId)
+                .HasPrincipalKey(e => e.id);
+
+            //Relationships between classes and cosmetics
+            modelBuilder.Entity<Character>()
+                .HasMany(e => e.Cosmetics)
                 .WithOne(e => e.Character)
                 .HasForeignKey(e => e.CharacterId)
                 .HasPrincipalKey(e => e.id);
@@ -123,11 +131,7 @@ namespace SOACA2.Models
 
                 // Data to add if there is enough time.
 
-                // Muti-class weapons - non main
-                //new Weapons() { name = "Lugermorph", type = "Lugermorph", dmg = 22, description = "The Lugermorph (/ˈlu.ɡɚ.mɔɹf/ or /ˈlu.ɡə.mɔːf/ loo-gerr-morf) is a promotional secondary weapon for the Scout and Engineer. It is based on the pistol used by Max from the Sam & Max franchise." },
-                //new Weapons() { name = "C.A.P.P.E.R", type = "C.A.P.P.E.R", dmg = 22, description = "The C.A.P.P.E.R is a community-created secondary weapon for the Scout and Engineer. It is a retro-futuristic ray gun with team-colored fins and a well-worn, metallic, team-colored body, implying extensive use. It has a small antenna protruding from the front of the gun and a long silver wire down the lower half of the weapon, which leads to a small rocket exhaust. The C.A.P.P.E.R uses AA batteries as ammunition instead of the standard Pistol magazine." },
-
-
+                
                 // Scout weapons primary non-main
                 //new Weapons() { name = "Force-A-Nature", type = "Force-A-Nature", dmg = 113, description = "The Force-A-Nature, also known as the FaN, is an unlockable primary weapon for the Scout. It is a large double-barreled hunting shotgun with sawn-off barrels and a wooden stock and foregrip." },
                 //new Weapons() { name = "Shortstop", type = "Shortstop", dmg = 72, description = "The Shortstop is a community-created primary weapon for the Scout. It is a four-barreled derringer-style peppergun fitted with pearl grips." },
@@ -180,6 +184,38 @@ namespace SOACA2.Models
                  new Weapon() { id = 21, name = "Revolver", type = "Revolver", dmg = 40, description = "The Revolver is the default secondary weapon for the Spy. It is a stylized double-action, six-shot revolver with ivory grips and a swing-out cylinder. ", CharacterId = 9 },
                  new Weapon() { id = 22, name = "Knife", type = "Melee", dmg = 10000, description = "The Knife, also known as the Butterfly Knife or Balisong, is the default melee weapon for the Spy. It is a foldable stylized butterfly knife with a handle clip and clip-point blade. ", CharacterId = 9 }
             );
+
+            //seeding cosmetic data
+            modelBuilder.Entity<Cosmetic>().HasData(
+                //Scout Cosmetics
+                new Cosmetic() { id = 1, name = "Batter's Helmet", type = "Hat", CharacterId = 1},
+                new Cosmetic() { id = 2, name = "Cool Cat Cardigan", type = "Shirt", CharacterId = 1 },
+                //Soldier Cosmetics
+                new Cosmetic() { id = 3, name = "Soldier's Stash", type = "Hat", CharacterId = 2 },
+                new Cosmetic() { id = 4, name = "Hornblower", type = "Shirt", CharacterId = 2 },
+                //Pyro Cosmetics
+                new Cosmetic() { id = 5, name = "Brigade Helm", type = "Hat", CharacterId = 3 },
+                new Cosmetic() { id = 6, name = "Torcher's Trench Coat", type = "Shirt", CharacterId = 3 },
+                //Demoman Cosmetics
+                new Cosmetic() { id = 7, name = "Scotsman's Stove Pipe", type = "Hat", CharacterId = 4 },
+                new Cosmetic() { id = 8, name = "Hurt Locher", type = "Shirt", CharacterId = 4 },
+                //Heavy Cosmetics
+                new Cosmetic() { id = 9, name = "Officer's Ushanka", type = "Hat", CharacterId = 5 },
+                new Cosmetic() { id = 10, name = "Leftover Trap", type = "Beard", CharacterId = 5 },
+                //Engineer Cosmetics
+                new Cosmetic() { id = 11, name = "The Danger", type = "Hat", CharacterId = 6 },
+                new Cosmetic() { id = 12, name = "Gold Digger", type = "Beard", CharacterId = 6 },
+                //Medic Cosmetics
+                new Cosmetic() { id = 13, name = "Vintage Tyrolean", type = "Hat", CharacterId = 7 },
+                new Cosmetic() { id = 14, name = "A Brush with Death", type = "Beard", CharacterId = 7 },
+                //Sniper Cosmetics
+                new Cosmetic() { id = 15, name = "Professional's Panama", type = "Hat", CharacterId = 8 },
+                new Cosmetic() { id = 16, name = "Five-Month Shadow", type = "Beard", CharacterId = 8 },
+                //Spy Cosmetics
+                new Cosmetic() { id = 17, name = "Fancy Fedora", type = "Hat", CharacterId = 9 },
+                new Cosmetic() { id = 18, name = "Megapixel Beard", type = "Beard", CharacterId = 9 }
+            );
+
 
             base.OnModelCreating(modelBuilder);
         }

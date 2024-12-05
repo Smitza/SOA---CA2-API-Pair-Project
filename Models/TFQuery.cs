@@ -18,7 +18,9 @@ namespace SOACA2.Models
         [QueryRoot("characters")]
         public IQueryable<Character> GetAllCharacters()
         {
-            return _context.Characters.Include(c => c.Weapons); 
+            return _context.Characters
+                .Include(c => c.Weapons)
+                .Include(c => c.Cosmetics); 
         }
 
         [QueryRoot(typeof(Character))]
@@ -31,6 +33,12 @@ namespace SOACA2.Models
         public IQueryable<Weapon> GetAllWeapons()
         {
             return _context.Weapons.Include(c => c.Character);
+        }
+
+        [QueryRoot("cosmetics")]
+        public IQueryable<Cosmetic> GetAllCosmetics()
+        {
+            return _context.Cosmetics.Include(c => c.Character);
         }
     }
 
