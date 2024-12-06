@@ -6,9 +6,13 @@ using SOACA2.Models;
 
 //new
 using Microsoft.Data.SqlClient;
+using ImplementAPIKeyAuthentication.Interface;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("ApiKey.json", optional: true, reloadOnChange: true);
+
 
 builder.Services.AddGraphQL();
 
@@ -29,7 +33,10 @@ builder.Services.AddControllers()
 
 builder.Services.AddDbContext<TFContext>(opt => opt.UseInMemoryDatabase("TFList"));
 
+builder.Services.AddTransient<IApiKeyValidation, ApiKeyValidation>();
+builder.Services.AddScoped<ApiKeyValidation>();
 
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
